@@ -46,8 +46,8 @@ todoInput.addEventListener("keypress" , function(event) {
 })
 
 
-{/* <li class="todo-item">
+/* <li class="todo-item">
     <p class="todo"></p>
     <button class="delete-task"></button>
 </li>
- */}
+ */
