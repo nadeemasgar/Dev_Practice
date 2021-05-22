@@ -37,6 +37,7 @@ let recordedData;
         mediaRecorder.ondataavailable = function(e) {
             console.log("Inside on data available");
             recordedData = e.data;
+            saveVideoToFs();
         }
     
         //console.log(mediaRecorder);
@@ -61,3 +62,20 @@ let recordedData;
 
 })();
 
+
+function saveVideoToFs() {
+    console.log("Saving Video");
+    // File object in recordedData
+
+    let videoUrl = URL.createObjectURL(recordedData); // Create Blob object into URL
+    console.log(videoUrl);
+
+    let aTag = document.createElement("a");
+    aTag.download = "video.mp4";
+    aTag.href = videoUrl;
+
+    aTag.click();
+    aTag.remove();
+}
+
+// Blob is an object of video data
