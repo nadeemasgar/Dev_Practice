@@ -54,7 +54,9 @@ let recordedData;
                 recordButton.innerHTML = "Recording";
             }
             recordingState = !recordingState;
-        })
+        });
+
+        photoButton.addEventListener("click", capturePhotos);
         
     } catch (error) {
         // if any of the await fail or promise rejects
@@ -77,5 +79,21 @@ function saveVideoToFs() {
     aTag.click();
     aTag.remove();
 }
+
+function capturePhotos() {
+    let canvas = document.createElement("canvas");
+    canvas.height = videoPlayer.videoHeight;
+    canvas.width = videoPlayer.videoWidth;
+  
+    let ctx = canvas.getContext("2d");
+    ctx.drawImage(videoPlayer, 0, 0);
+  
+    let imageUrl = canvas.toDataURL("image/jpg"); //canvas object => file url String
+  
+    let aTag = document.createElement("a");
+    aTag.download = "photo.jpg";
+    aTag.href = imageUrl;
+    aTag.click();
+  }
 
 // Blob is an object of video data
